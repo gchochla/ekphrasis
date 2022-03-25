@@ -10,9 +10,10 @@ import zipfile
 
 
 def get_stats_dir():
-    home = expanduser("~")
-
-    ekphrasis_dir = path.join(home, '.ekphrasis')
+    ekphrasis_dir = os.getenv("EKPHRASIS_DIR")
+    if ekphrasis_dir is None:
+        home = expanduser("~")
+        ekphrasis_dir = path.join(home, '.ekphrasis')
 
     if not os.path.exists(ekphrasis_dir):
         os.makedirs(ekphrasis_dir)
